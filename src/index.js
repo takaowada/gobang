@@ -177,7 +177,7 @@ function enter() {
 
 function newAccount() {
 
-    const privkey = '5RjgD3JZVKZGxj9ZYHRaHhZVtk8MXTXtm5iu8UaW8xsYtceXtc6pcFZgHqGqedSAotiAQ4Kjuov5MU2AzqEB3ApG';
+    const privkey = '2yquS3ySrGWPEKywCPzX4RTJugqRh7kJSo5aehsLYPEWkUxBWA39oMrZ7ZxuM4fgyXYs2cPwh5n8aNNpH5x2VyK1';
 
     const iost = new IOST.IOST({ // 如果不设置则使用default配置来发交易
         gasRatio: 1,
@@ -189,12 +189,12 @@ function newAccount() {
     const rpc = new IOST.RPC(new IOST.HTTPProvider(host.value));
 
     // init admin account
-    const acc = new IOST.Account("gobangmaker");
+    const acc = new IOST.Account("admin");
     const kp = new IOST.KeyPair(bs58.decode(privkey));
     acc.addKeyPair(kp, "active");
 
     const name = Math.random().toString(36).substr(2, 12);
-    const tx = iost.newAccount(name, "gobangmaker", kp.id, kp.id, 1024, 10000);
+    const tx = iost.newAccount(name, "admin", kp.id, kp.id, 1024, 10000);
     acc.signTx(tx);
 
     const handler = new IOST.TxHandler(tx, rpc);
